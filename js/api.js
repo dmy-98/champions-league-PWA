@@ -1,6 +1,6 @@
-const base_url = "https://api.football-data.org/v2/competitions/";
-const standings_url = `${base_url}2021/standings?standingType=TOTAL`
-
+const base_url = "https://api.football-data.org/v2/";
+const standings_url = `${base_url}competitions/2021/standings?standingType=TOTAL`
+const team_url = `${base_url}teams/`
 
 const fetchApi = (url) => {
     return fetch(url, {
@@ -35,15 +35,15 @@ function error(error) {
 
 // Blok kode untuk melakukan request data json
 function getStandings() {
-    // if ("caches" in window) {
-    //     caches.match(standings_url).then(function(response) {
-    //         if (response) {
-    //             response.json().then(function(data) {
-    //                 standingDOM(data);
-    //             });
-    //         }
-    //     });
-    // }
+    if ("caches" in window) {
+        caches.match(standings_url).then(function(response) {
+            if (response) {
+                response.json().then(function(data) {
+                    standingDOM(data);
+                });
+            }
+        });
+    }
 
     fetchApi(standings_url)
         .then(status)
@@ -62,14 +62,14 @@ function getStandings() {
         });
 }
 
-function getArticleById() {
+function getTeamById() {
     return new Promise(function(resolve, reject) {
         // Ambil nilai query parameter (?id=)
         var urlParams = new URLSearchParams(window.location.search);
         var idParam = urlParams.get("id");
 
         if ("caches" in window) {
-            caches.match(base_url + "article/" + idParam).then(function(response) {
+            caches.match(team_url + idParam).then(function(response) {
                 if (response) {
                     response.json().then(function(data) {
                         var articleHTML = `
@@ -92,7 +92,7 @@ function getArticleById() {
             });
         }
 
-        fetch(base_url + "article/" + idParam)
+        fetchApi(team_url + idParam)
             .then(status)
             .then(json)
             .then(function(data) {

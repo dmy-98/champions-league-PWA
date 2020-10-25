@@ -8,7 +8,7 @@ function standingDOM(data) {
             <tr>
                 <td class="center-align">${club.position}</td>
                 <td>
-                    <a href="./detailtim.html?id=${club.team.id}">
+                    <a href="./team.html?id=${club.team.id}">
                         <p class="hide-on-small-only">
                             <img class = "show-on-medium-and-up show-on-medium-and-down" src=${club.team.crestUrl}  alt="logo club" style="float:left;width:22px;height:22px;margin-right:20px">
                             ${club.team.name}
