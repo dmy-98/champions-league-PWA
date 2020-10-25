@@ -3,19 +3,19 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Champions League</title>
-    <meta name="description" content="Champions League" />
+    <title>Premier League</title>
+    <meta name="description" content="Premier League" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/materialize.min.css" />
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#01579b" />
+    <meta name="theme-color" content="#673ab7" />
 </head>
 
 <body>
     <!-- Navigasi -->
-    <nav class="#01579b light-blue darken-4" role="navigation">
+    <nav class="#673ab7 deep-purple" role="navigation">
         <div class="nav-wrapper container">
-            <a href="#" class="brand-logo" id="logo-container">Champions League</a>
+            <a href="#" class="brand-logo" id="logo-container">Premier League</a>
             <a href="#" class="sidenav-trigger" data-target="nav-mobile">&#9776;</a>
 
             <ul class="topnav right hide-on-med-and-down"></ul>
@@ -31,6 +31,8 @@
     <script src="js/api.js"></script>
     <script src="js/idb.js"></script>
     <script src="js/db.js"></script>
+
+    <script src="js/standings.js"></script>
 
     <script>
         // REGISTER SERVICE WORKER
@@ -51,7 +53,7 @@
 
         // REQUEST API UNTUK PERTAMA KALI
         document.addEventListener("DOMContentLoaded", function() {
-            getArticles();
+            getStandings();
         });
     </script>
 </body>

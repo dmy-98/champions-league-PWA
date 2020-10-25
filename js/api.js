@@ -1,4 +1,14 @@
-var base_url = "https://readerapi.codepolitan.com/";
+const base_url = "https://api.football-data.org/v2/competitions/";
+const standings_url = `${base_url}2021/standings?standingType=TOTAL`
+
+
+const fetchApi = (url) => {
+    return fetch(url, {
+        headers: {
+            'X-Auth-Token': '3d522eafe5a74c2a8fd8f2064ea7bba0'
+        }
+    });
+}
 
 // Blok kode yang akan di panggil jika fetch berhasil
 function status(response) {
@@ -24,61 +34,32 @@ function error(error) {
 }
 
 // Blok kode untuk melakukan request data json
-function getArticles() {
-    if ("caches" in window) {
-        caches.match(base_url + "articles").then(function(response) {
-            if (response) {
-                response.json().then(function(data) {
-                    var articlesHTML = "";
-                    data.result.forEach(function(article) {
-                        articlesHTML += `
-                  <div class="card">
-                    <a href="./article.html?id=${article.id}">
-                      <div class="card-image waves-effect waves-block waves-light">
-                        <img src="${article.thumbnail}" />
-                      </div>
-                    </a>
-                    <div class="card-content">
-                      <span class="card-title truncate">${article.title}</span>
-                      <p>${article.description}</p>
-                    </div>
-                  </div>
-                `;
-                    });
-                    // Sisipkan komponen card ke dalam elemen dengan id #content
-                    document.getElementById("articles").innerHTML = articlesHTML;
-                });
-            }
-        });
-    }
+function getStandings() {
+    // if ("caches" in window) {
+    //     caches.match(standings_url).then(function(response) {
+    //         if (response) {
+    //             response.json().then(function(data) {
+    //                 standingDOM(data);
+    //             });
+    //         }
+    //     });
+    // }
 
-    fetch(base_url + "articles")
+    fetchApi(standings_url)
         .then(status)
         .then(json)
         .then(function(data) {
-            // Objek/array JavaScript dari response.json() masuk lewat data.
-
-            // Menyusun komponen card artikel secara dinamis
-            var articlesHTML = "";
-            data.result.forEach(function(article) {
-                articlesHTML += `
-              <div class="card">
-                <a href="./article.html?id=${article.id}">
-                  <div class="card-image waves-effect waves-block waves-light">
-                    <img src="${article.thumbnail}" />
-                  </div>
-                </a>
-                <div class="card-content">
-                  <span class="card-title truncate">${article.title}</span>
-                  <p>${article.description}</p>
-                </div>
-              </div>
-            `;
-            });
-            // Sisipkan komponen card ke dalam elemen dengan id #content
-            document.getElementById("articles").innerHTML = articlesHTML;
+            standingDOM(data)
         })
-        .catch(error);
+        .catch(function() {
+            caches.match(standings_url).then(function(response) {
+                if (response) {
+                    response.json().then(function(data) {
+                        standingDOM(data);
+                    });
+                }
+            });
+        });
 }
 
 function getArticleById() {
