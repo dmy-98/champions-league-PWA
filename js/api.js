@@ -1,6 +1,7 @@
 const base_url = "https://api.football-data.org/v2/";
 const standings_url = `${base_url}competitions/2021/standings?standingType=TOTAL`
-const team_url = `${base_url}teams/`
+const team_url = `${base_url}teams/`;
+const player_url = `${base_url}players/`;
 
 const fetchApi = (url) => {
     return fetch(url, {
@@ -11,7 +12,7 @@ const fetchApi = (url) => {
 }
 
 // Blok kode yang akan di panggil jika fetch berhasil
-function status(response) {
+const status = (response) => {
     if (response.status !== 200) {
         console.log("Error : " + response.status);
         // Method reject() akan membuat blok catch terpanggil
@@ -23,18 +24,18 @@ function status(response) {
 }
 
 // Blok kode untuk memparsing json menjadi array JavaScript
-function json(response) {
+const json = (response) => {
     return response.json();
 }
 
 // Blok kode untuk meng-handle kesalahan di blok catch
-function error(error) {
+const error = (error) => {
     // Parameter error berasal dari Promise.reject()
     console.log("Error : " + error);
 }
 
 // Blok kode untuk melakukan request data json
-function getStandings() {
+const getStandings = () => {
     if ("caches" in window) {
         caches.match(standings_url).then(function(response) {
             if (response) {
@@ -62,20 +63,17 @@ function getStandings() {
         });
 }
 
-function getTeamById() {
+const getTeamById = () => {
     return new Promise(function(resolve, reject) {
         // Ambil nilai query parameter (?id=)
-        var urlParams = new URLSearchParams(window.location.search);
-        var idParam = Number(urlParams.get("id"));
-        console.log(idParam);
+        const urlParams = new URLSearchParams(window.location.search);
+        const idParam = Number(urlParams.get("id"));
 
         if ("caches" in window) {
             caches.match(team_url + idParam).then(function(response) {
                 if (response) {
                     response.json().then(function(data) {
-                        // Sisipkan komponen card ke dalam elemen dengan id #content
                         teamDOM(data);
-                        // Kirim objek data hasil parsing json agar bisa disimpan ke indexed db
                         resolve(data);
                     });
                 }
@@ -86,15 +84,13 @@ function getTeamById() {
             .then(status)
             .then(json)
             .then(function(data) {
-                // Objek JavaScript dari response.json() masuk lewat variabel data.
                 teamDOM(data);
-                // Kirim objek data hasil parsing json agar bisa disimpan ke indexed db
                 resolve(data);
             });
     });
 }
 
-function getSavedArticles() {
+function getSavedTeams() {
     getAll().then(function(articles) {
         console.log(articles);
         // Menyusun komponen card artikel secara dinamis

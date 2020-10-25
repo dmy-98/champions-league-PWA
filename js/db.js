@@ -1,8 +1,33 @@
-var dbPromised = idb.open("news-reader", 1, function(upgradeDb) {
-    var articlesObjectStore = upgradeDb.createObjectStore("articles", {
-        keyPath: "ID"
-    });
-    articlesObjectStore.createIndex("post_title", "post_title", { unique: false });
+let dbPromised = idb.open("premierLeagueDB", 1, function(upgradeDb) {
+    if (!upgradeDb.objectStoreNames.contains("team_fav")) {
+        let indexTimFav = upgradeDb.createObjectStore("team_fav", {
+            keyPath: "id"
+        });
+        indexTimFav.createIndex("name", "name", {
+            unique: false
+        });
+    }
+
+    if (!upgradeDb.objectStoreNames.contains("player_fav")) {
+        let indexPlayerFav = upgradeDb.createObjectStore("player_fav", {
+            keyPath: "id"
+        });
+        indexPlayerFav.createIndex("name", "name", {
+            unique: false
+        });
+    }
+
+    if (!upgradeDb.objectStoreNames.contains("match_fav")) {
+        let indexMatchFav = upgradeDb.createObjectStore("match_fav", {
+            keyPath: "id"
+        });
+        indexMatchFav.createIndex("home", "home", {
+            unique: false
+        });
+        indexMatchFav.createIndex("away", "away", {
+            unique: false
+        });
+    }
 });
 
 function saveForLater(article) {

@@ -36,16 +36,16 @@ function standingDOM(data) {
             <table class="responsive-table striped" >
                 <thead>
                     <tr>
-                    <th class="center-align">Position</th>
-                    <th>Team</th>
-                    <th class="center-align">Played</th>
-                    <th class="center-align">Won</th>
-                    <th class="center-align">Draw</th>
-                    <th class="center-align">Lost</th>
-                    <th class="center-align">GF</th>
-                    <th class="center-align">GA</th>
-                    <th class="center-align">GD</th>
-                    <th class="center-align">Points</th>
+                        <th class="center-align">Position</th>
+                        <th>Team</th>
+                        <th class="center-align">Played</th>
+                        <th class="center-align">Won</th>
+                        <th class="center-align">Draw</th>
+                        <th class="center-align">Lost</th>
+                        <th class="center-align">GF</th>
+                        <th class="center-align">GA</th>
+                        <th class="center-align">GD</th>
+                        <th class="center-align">Points</th>
                     </tr>
                 </thead>
                 <tdbody>${dataTableHtml}</tdbody>
