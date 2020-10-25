@@ -33,7 +33,7 @@ function standingDOM(data) {
     <div class="card">
         <div class="card-content">
             <h5 class="header">Last Updated: ${(new Date(data.competition.lastUpdated)).toUTCString()}</h5> 
-            <table class="responsive-table striped " >
+            <table class="responsive-table striped" >
                 <thead>
                     <tr>
                     <th class="center-align">Position</th>
