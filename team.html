@@ -16,7 +16,7 @@
     <!-- Navigasi -->
     <nav class="#673ab7 deep-purple" role="navigation">
         <div class="nav-wrapper container">
-            <a href="/index.html" class="brand-logo" id="logo-container">Premier League</a>
+            <a href="/index.html" class="brand-logo" id="logo-container">Premier</a>
             <a href="./index.html" class="sidenav-trigger" data-target="nav-mobile">
                 <i class="material-icons">arrow_back</i>
             </a>
@@ -83,6 +83,9 @@
         <a class="btn-floating btn-large red" id="save">
             <i class="large material-icons">save</i>
         </a>
+        <a class="btn-floating btn-large red" id="delete">
+            <i class="large material-icons">delete</i>
+        </a>
     </div>
     <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
     <script src="js/materialize.min.js"></script>
@@ -108,9 +111,12 @@
             console.log("ServiceWorker belum didukung browser ini.");
         }
         document.addEventListener("DOMContentLoaded", function() {
-            var urlParams = new URLSearchParams(window.location.search);
-            var isFromSaved = urlParams.get("saved");
-            // var btnSave = document.getTeamById("save");
+            const urlParams = new URLSearchParams(window.location.search);
+            const isFromSaved = urlParams.get("saved");
+            const id = Number(urlParams.get("id"));
+            const btnSave = document.getElementById("save");
+            const btnDelete = document.getElementById("delete");
+            let item;
             if (isFromSaved) {
                 // Hide fab jika dimuat dari indexed db
                 btnSave.style.display = 'none';
@@ -118,13 +124,17 @@
                 // ambil artikel lalu tampilkan
                 getSavedTeamById();
             } else {
-                var item = getTeamById();
+                // Hide fab jika dimuat dari indexed db
+                btnDelete.style.display = 'none';
+                item = getTeamById();
             }
             btnSave.onclick = function() {
-                console.log("Tombol FAB di klik.");
-                item.then(function(article) {
-                    saveForLater(article);
+                item.then(function(team) {
+                    saveForLater(team);
                 });
+            };
+            btnDelete.onclick = function() {
+                deleteTeam(id);
             };
         });
     </script>

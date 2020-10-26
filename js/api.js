@@ -2,11 +2,12 @@ const base_url = "https://api.football-data.org/v2/";
 const standings_url = `${base_url}competitions/2021/standings?standingType=TOTAL`
 const team_url = `${base_url}teams/`;
 const player_url = `${base_url}players/`;
-
+// 031cb13ff0274b41bf48afd7b3513c90
+// 3d522eafe5a74c2a8fd8f2064ea7bba0
 const fetchApi = (url) => {
     return fetch(url, {
         headers: {
-            'X-Auth-Token': '3d522eafe5a74c2a8fd8f2064ea7bba0'
+            'X-Auth-Token': '031cb13ff0274b41bf48afd7b3513c90'
         }
     });
 }
@@ -91,50 +92,16 @@ const getTeamById = () => {
 }
 
 function getSavedTeams() {
-    getAll().then(function(articles) {
-        console.log(articles);
-        // Menyusun komponen card artikel secara dinamis
-        var articlesHTML = "";
-        articles.forEach(function(article) {
-            var description = article.post_content.substring(0, 100);
-            articlesHTML += `
-                  <div class="card">
-                    <a href="./article.html?id=${article.ID}&saved=true">
-                      <div class="card-image waves-effect waves-block waves-light">
-                        <img src="${article.cover}" />
-                      </div>
-                    </a>
-                    <div class="card-content">
-                      <span class="card-title truncate">${article.post_title}</span>
-                      <p>${description}</p>
-                    </div>
-                  </div>
-                `;
-        });
-        // Sisipkan komponen card ke dalam elemen dengan id #body-content
-        document.getElementById("body-content").innerHTML = articlesHTML;
+    getAll().then(function(team_fav) {
+        savedTeamDOM(team_fav);
     });
 }
 
-function getSavedArticleById() {
+function getSavedTeamById() {
     var urlParams = new URLSearchParams(window.location.search);
-    var idParam = urlParams.get("id");
-
-    getById(idParam).then(function(article) {
-        articleHTML = '';
-        var articleHTML = `
-    <div class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <img src="${article.cover}" />
-      </div>
-      <div class="card-content">
-        <span class="card-title">${article.post_title}</span>
-        ${snarkdown(article.post_content)}
-      </div>
-    </div>
-  `;
-        // Sisipkan komponen card ke dalam elemen dengan id #content
-        document.getElementById("body-content").innerHTML = articleHTML;
+    var idParam = Number(urlParams.get("id"));
+    getById(idParam).then(function(team) {
+        teamDOM(team);
     });
 }
 
@@ -142,12 +109,12 @@ function getById(id) {
     return new Promise(function(resolve, reject) {
         dbPromised
             .then(function(db) {
-                var tx = db.transaction("articles", "readonly");
-                var store = tx.objectStore("articles");
+                var tx = db.transaction("team_fav", "readonly");
+                var store = tx.objectStore("team_fav");
                 return store.get(id);
             })
-            .then(function(article) {
-                resolve(article);
+            .then(function(team) {
+                resolve(team);
             });
     });
-}
+};

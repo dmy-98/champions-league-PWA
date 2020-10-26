@@ -1,10 +1,9 @@
 const CACHE_NAME = "premier-league-v1";
-var urlsToCache = [
+let urlsToCache = [
     "/",
     "/nav.html",
     "/index.html",
     "/team.html",
-    "/player.html",
     "/pages/home.html",
     "/pages/about.html",
     "/pages/contact.html",
@@ -12,7 +11,7 @@ var urlsToCache = [
     "/js/materialize.min.js",
     "/js/standings.js",
     "/js/team.js",
-    "/js/player.js",
+    "/js/savedTeams.js",
     "/manifest.json",
     "/js/nav.js",
     "/js/api.js",
