@@ -98,8 +98,8 @@ function getSavedTeams() {
 }
 
 function getSavedTeamById() {
-    var urlParams = new URLSearchParams(window.location.search);
-    var idParam = Number(urlParams.get("id"));
+    const urlParams = new URLSearchParams(window.location.search);
+    const idParam = Number(urlParams.get("id"));
     getById(idParam).then(function(team) {
         teamDOM(team);
     });
@@ -109,8 +109,8 @@ function getById(id) {
     return new Promise(function(resolve, reject) {
         dbPromised
             .then(function(db) {
-                var tx = db.transaction("team_fav", "readonly");
-                var store = tx.objectStore("team_fav");
+                const tx = db.transaction("team_fav", "readonly");
+                const store = tx.objectStore("team_fav");
                 return store.get(id);
             })
             .then(function(team) {

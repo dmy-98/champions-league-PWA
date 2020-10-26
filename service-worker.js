@@ -1,4 +1,5 @@
-const CACHE_NAME = "premier-league-v1";
+const CACHE_NAME = "premier-league-v2";
+
 let urlsToCache = [
     "/",
     "/nav.html",
@@ -8,14 +9,17 @@ let urlsToCache = [
     "/pages/about.html",
     "/pages/contact.html",
     "/css/materialize.min.css",
+    "/js/api.js",
+    "/js/db.js",
+    "/js/idb.js",
     "/js/materialize.min.js",
+    "/js/nav.js",
+    "/js/savedTeams.js",
+    "/js/script.js",
     "/js/standings.js",
     "/js/team.js",
-    "/js/savedTeams.js",
     "/manifest.json",
-    "/js/nav.js",
-    "/js/api.js",
-    "/icon.png"
+    "/icon/android-icon-192x192-dunplab-manifest-24926.png"
 ];
 
 self.addEventListener("install", function(event) {
