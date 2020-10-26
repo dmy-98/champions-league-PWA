@@ -20,5 +20,6 @@
         { "src": "icon/apple-icon-57x57-dunplab-manifest-24926.png", "type": "image/png", "sizes": "57x57" },
         { "src": "icon/favicon-32x32-dunplab-manifest-24926.png", "type": "image/png", "sizes": "32x32" },
         { "src": "icon/favicon-16x16-dunplab-manifest-24926.png", "type": "image/png", "sizes": "16x16" }
-    ]
+    ],
+    "gcm_sender_id": "861189328458"
 }

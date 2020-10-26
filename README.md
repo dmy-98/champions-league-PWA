@@ -1,4 +1,6 @@
 # Premier League Progressive Web Apps
 
-Showing group stage table of Premier League 2020-2021
+Showing Standing Teams of Premier League Season 2020-2021 and Showing Team Details
+
+Made by Daniel Mahardika Yusuf
 
