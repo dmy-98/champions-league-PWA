@@ -7,7 +7,7 @@ function savedTeamDOM(team_fav) {
                 <div class="center-align">
                     <a href="./team.html?id=${team.id}&saved=true">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img src="${team.crestUrl}" align="center" width="200px" height="200px">
+                            <img src="${team.crestUrl}" alt="${team.name}-logo" align="center" width="200px" height="200px">
                         </div>
                         <div class="card-content">
                             <h4 class="flow-text">${team.name}</h4>

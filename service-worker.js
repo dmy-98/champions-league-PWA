@@ -30,13 +30,15 @@ let urlsToCache = [
     "/icon/apple-icon-144x144-dunplab-manifest-24926.png",
     "/icon/apple-icon-152x152-dunplab-manifest-24926.png",
     "/icon/apple-icon-180x180-dunplab-manifest-24926.png",
-    "/icon/apple-icon-180x180-dunplab-manifest-24926.png",
     "/icon/favicon-16x16-dunplab-manifest-24926.png",
     "/icon/favicon-32x32-dunplab-manifest-24926.png",
     "/icon/favicon-96x96-dunplab-manifest-24926.png",
+    "https://fonts.googleapis.com/icon?family=Material+Icons",
+    "https://fonts.gstatic.com/s/materialicons/v55/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2"
 ];
 
 self.addEventListener("install", function(event) {
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME).then(function(cache) {
             return cache.addAll(urlsToCache);
@@ -45,7 +47,7 @@ self.addEventListener("install", function(event) {
 });
 
 self.addEventListener("fetch", function(event) {
-    const base_url = "https://api.football-data.org/v2/competitions/";
+    const base_url = "https://api.football-data.org/v2/";
 
     if (event.request.url.indexOf(base_url) > -1) {
         event.respondWith(

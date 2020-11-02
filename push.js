@@ -13,10 +13,10 @@ webPush.setVapidDetails(
 )
 
 const pushSubscription = {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/c6kcwocgTBI:APA91bFQZtUCuEuUc9nYWfJ2EP8IP1GpSnDEoSe4JwC-00oYACMBSzjCXcR8uxJR9njOw04XmtTFjStOWsZL6SNSzHOuV4ZreJqzge1j-C_SI3B7uyPquj5sJmqq6ea8eqHzCHCn9Zv8",
+    "endpoint": "https://fcm.googleapis.com/fcm/send/fmA7jKybm_Q:APA91bFdmTpjOiXBXWqJ9aGEq6J_lw-OCTEx53cTntlvIJ-OqfXQIndOrF9cO7HvMiP3InkY7Rrv51IanoMHeyHgbgpmNGulcr1UmSB6uZygKxtqas6VDVI4TcJXTKOzOSicQfDriSfz",
     "keys": {
-        "p256dh": "BCUHvuyZKaVqWdo6tGFI2V2pGFUy5dVjRU6erc4SPtBfeJ77o0H0jvNKrLfyJqNqnisSHgn7zOetKkIddKZzp8U=",
-        "auth": "E/QCLY/mM8f5NCyk3dYdbg=="
+        "p256dh": "BHM4YoKeZAurb2zsV5j1uQj3EAKmJzLrDrsYvLdutk/Jps0CQhyPMXDWklXyWZkGOJa2MDAX9XCtd8tvkFFwCQs=",
+        "auth": "0kJC6HVx/N414blhNse5pg=="
     }
 };
 
@@ -26,6 +26,7 @@ const options = {
     gcmAPIKey: '861189328458',
     TTL: 60
 };
+
 webPush.sendNotification(
     pushSubscription,
     payload,

@@ -23,7 +23,7 @@ function saveForLater(team) {
         .then(function(db) {
             var tx = db.transaction("team_fav", "readwrite");
             var store = tx.objectStore("team_fav");
-            store.add(team);
+            store.put(team);
             return tx.complete;
         })
         .then(function() {

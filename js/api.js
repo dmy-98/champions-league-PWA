@@ -93,7 +93,16 @@ const getTeamById = () => {
 
 function getSavedTeams() {
     getAll().then(function(team_fav) {
-        savedTeamDOM(team_fav);
+        console.log("Team:", team_fav);
+        if (team_fav.length > 0) {
+            savedTeamDOM(team_fav);
+        } else {
+            console.log("kosong")
+            let kosongHtml = `
+                <h3>You haven't saved anything</h3>
+            `;
+            document.getElementById("body-content").innerHTML = kosongHtml;
+        }
     });
 }
 
