@@ -7,7 +7,7 @@ const player_url = `${base_url}players/`;
 const fetchApi = (url) => {
     return fetch(url, {
         headers: {
-            'X-Auth-Token': '031cb13ff0274b41bf48afd7b3513c90'
+            'X-Auth-Token': '3d522eafe5a74c2a8fd8f2064ea7bba0'
         }
     });
 }

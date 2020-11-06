@@ -110,6 +110,7 @@
         } else {
             console.log("ServiceWorker belum didukung browser ini.");
         }
+
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
             const isFromSaved = urlParams.get("saved");
